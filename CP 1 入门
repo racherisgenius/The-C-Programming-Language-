@@ -1,0 +1,128 @@
+# The-C-Programming-Language-
+Notes for the book "The C Programming Language"
+
+1.1 入门
+ - 一开始都是要写"Hello World"的！那就让我们撸一发hello world！
+
+#include <stdio.h> /*包含标准库信息*/
+ main()           /*定义为main的函数，不接受任何参数*/
+ {
+    printf("Hello, World\n"); /*main函数调用库里的函数printf来print */
+                              /* \n反斜杠n表示换行*/
+ }
+
+ -main是一个特殊的函数，所有的程序都是从一个main开始的。也就是说一个程序里面必须要带一个main。
+ - #include <stdio.h>表示告诉编译器在这个程序中要包括什么样的输入和输出信息 /*恩……让我有种python里面import的感觉233*/
+ - 函数之间数据的交换可以通过被换的函数调用并提供一个参数列表。就是函数后面（）里的东西
+ - “\n” 表示一个换行的一个转义字符 ，还有别的， 比如： \t→制表符  \b→回退符 \→双引号 \\→反斜杠符号本身
+
+***练习1***：自己对helloworld程序 删删改改 看看有什么变化
+ ***练习2***：在printf里面把\n变成\c会发生什么~
+
+
+1.2 变量与算数表达式
+ - 在C语言中，所有变量都必须先声明在使用！先声明他的属性再加上他的名字。最后给他付个值！
+ - ex：
+ int fahr, celsius;
+ int lower,upper,step;
+ lower=0;
+ upper=300;
+ step=20;
+ 
+ 1.2.1 While循环
+   - while循环体内的条件要为真，如果是假直接break出来执行while后面的语句。
+   ex：
+   #include<stdio.h>
+   main()
+   {
+     float fahr,celsius;
+     float lower,upper,step;
+     lower=0;
+     upper=300;
+     step=20;
+     fahr=lower;
+     while(fahr<=upper){
+        celsius=(5.0/9.0)*(fahr-32.0);
+        printf("%3.0f%6.1f\n",fahr,celsius)'
+        fahr=fahr+step;
+      }
+     }
+     
+   
+ 1.2.2 %格式化输出？
+   - 当时觉得打印里面出现%超级屌啊，现在终于知道这是啥了233
+  $$$$ - 比如这个%3.0f就表示打印浮点数至少占3个字符宽，而且不带小数点和小数部分。/*诶卧槽 我还是不懂？？？？喵喵喵？？？
+   - 还有的就是别的比如这个：
+   %a→浮点数，十六进制
+   %c→字符
+   %d→有符号的十进制整数
+   %f→浮点数
+   
+1.3 for循环
+ -恩，这个就是for（初始值；判断；步长辅助判断）
+ -这个和java的for不一样在于!这个不用花括号！
+ 
+1.4 符号常量
+ -#define可以把符号名定义为一个特别的字符串
+ -替换文本可以是任何字符串序列，不一定要是数字。
+ [ #define 名字 代替文本 ]
+ - ex:
+ #include <stdio.h>
+ #define LOWER 0
+ #define UPPER 300
+ #define STEP 20
+ *以上这些都是符号常量，不是变量！所以不需要声明。（一般用大写）
+ - 恩感觉这个好牛逼啊。这个字符串会自己转int格式？感觉好厉害啊2333
+ 
+1.5 字符输入\输出
+ -恩……这里就有种java里面IOinput这种感觉吧。就是get用户传来的数字。
+ -在这里用的是getchar（）和putchar（）
+ 
+   1.5.1 文件复制
+   -就觉得有一串代码蛮厉害的2333 
+   *新手版代码*
+ #include<stdio.h>
+ main()
+ {
+   int c;
+   c=getchar();
+   while(c!=EOF){
+       putchar(c); /*print char*/
+       c=getchar(); /*update c?*/
+     }
+ }
+   *进阶版！*
+ #include <stdio.h>
+ main()
+ {
+   int c;
+    while((c=getchar())!=EOF) /*在这里！=比=要高级一点因为有个括号， 所以先运行！=*/
+    putchar(c);
+ }
+   - 在这个循环里面getchar直接把进来的char给c然后让c和EOF进行compare
+   -c=getchar()!=EOF == c=(getchar()!=EOF) ←这样写的话c会被赋值成1或者0
+   
+   1.5.2字符计数
+    ***while循环版***
+    #include<stdio.h>
+    main()
+    {
+      long nc;
+      nc=0;
+      while(getchar()!=EOF)
+          ++nc; /*步长继续算*/
+          printf("%ld\n",nc);
+    }
+     ***for循环版本***
+     #include<stdio.h>
+     main()
+     {
+       double nc;
+       for(nc=0;getchar()!=EOF;++nc)
+          ;  /*恩……这个分号不是错的，是因为所有迭代都在一开始的时候写好了，所以循环体是空的，直接打印就好了233牛逼*/
+       printf("%.0f\n",nc);
+      }
+      
+      1.5.3行计算
+      ***while循环版本***
+      
