@@ -161,3 +161,51 @@ int main(void)
     printf("%d is a prime number\n", n);
   return 0;
 }
+
+/*
+5.10 get 100-200里所以的素数
+*/
+# include <stdio.h>
+# include <math.h>
+int main(void)
+{
+  int n, k, i,m = 0;
+  for(n=101; n<=200; n+=2)
+  {
+    k = sqrt(n);
+      for(i=2; i<=k; ++i)
+      {
+        if(n%i ==0) break;
+      }
+    if(i >= k+1)
+    {
+      printf("%d",n);
+      m +=1;
+    }
+  }
+  printf("\n");
+  return 0;
+}
+
+/*
+5.11 之前做过的那个解码题
+*/
+#include <stdio.h>
+int main(void)
+{
+  char c;
+  while( (c=getchar()) != '\n')
+  {
+    if((c >='A' && c <= 'Z') || (c>='a' && c<='z')
+    {
+     c += 4;
+      if((c>'Z' && c<='Z'+4 || c>'z')
+      {
+      c -= 25;
+      }
+      printf("%c", c);
+    }
+  }
+  printf("\n");
+  return 0;
+}
